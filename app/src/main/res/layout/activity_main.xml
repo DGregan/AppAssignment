@@ -1,0 +1,123 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="#307DC9"
+    >
+
+
+
+    <!-- DIT Logo Image + Attributes -->
+    <ImageView
+        android:contentDescription="@string/ditlogo"
+        android:id="@+id/DITLogo"
+        android:src="@mipmap/dit_logo_icon"
+
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <!-- My Assignment Text Label + Attributes -->
+    <TextView
+        android:id="@+id/textView"
+        android:text="@string/MyAssignments"
+        android:textColor="#FFFFFF"
+        android:textSize="35sp"
+        android:typeface="sans"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+
+        android:shadowColor="#000000"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="10"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/DITLogo"
+        android:layout_centerInParent="true"
+
+         />
+
+    <!-- Create Assignment Button + Attributes -->
+    <Button
+        android:id="@+id/CreateButton"
+        android:text="@string/CreateA"
+        android:onClick="onClickCreateButton"
+
+        android:textColor="#000000"
+        android:background="#FFFFFF"
+        android:shadowColor="#A3A3A3"
+        android:radius="100dp"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="30dp"
+        android:padding="15dp"
+        android:layout_centerInParent="true"
+
+         />
+
+    <!-- View Assignments Button + Attributes -->
+    <Button
+        android:id="@+id/ViewButton"
+        android:text="@string/ViewA"
+        android:onClick="onClickViewButton"
+
+        android:textColor="#000000"
+        android:background="#FFFFFF"
+        android:shadowColor="#A3A3A3"
+        android:radius="4dp"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:padding="15dp"
+        android:layout_below="@+id/CreateButton"
+        android:layout_centerInParent="true"
+        />
+
+    <!-- Exit Button + Attributes -->
+    <Button
+        android:id="@+id/ExitButton"
+        android:text="@string/Exit"
+        android:onClick="onClickExitButton"
+
+
+        android:textColor="#000000"
+        android:background="#FFFFFF"
+        android:shadowColor="#A3A3A3"
+        android:radius="4dp"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+
+
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:padding="15dp"
+        android:layout_below="@+id/ViewButton"
+        android:layout_centerInParent="true"
+        />
+
+
+
+
+</RelativeLayout>
+
+

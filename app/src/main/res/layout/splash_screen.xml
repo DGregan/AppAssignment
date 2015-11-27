@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#307DC9"
+    >
+
+    <!-- DIT Logo Image -->
+    <ImageView
+        android:id="@+id/splash_logo"
+        android:contentDescription="@string/dit_splash_logo"
+        android:src="@mipmap/dit_logo_icon"
+
+        android:layout_width="250dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+
+        />
+
+    <!-- Application Title TextView -->
+    <TextView
+        android:id="@+id/textView"
+        android:text="@string/MyAssignments"
+        android:textSize="35sp"
+        android:typeface="sans"
+        android:textColor="#FFFFFF"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+
+        android:shadowColor="#000000"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="10"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/splash_logo"
+        android:layout_centerInParent="true"
+
+        />
+
+    <!-- Creator's Name TextView -->
+    <TextView
+        android:id="@+id/title_splash"
+        android:text="@string/creator_name"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+
+        android:shadowColor="#000000"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="10"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerInParent="true"
+        />
+
+</RelativeLayout>

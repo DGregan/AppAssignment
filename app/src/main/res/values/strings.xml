@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Assignments</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Main Menu Strings -->
+    <string name="ditlogo">DIT LOGO</string>
+    <string name="MyAssignments">My Assignments</string>
+    <string name="CreateA">Create Assignment</string>
+    <string name="ViewA">View Assignments</string>
+    <string name="Exit">Exit</string>
+
+    <!-- Create Assignment Strings -->
+    <string name="AssignmentTitle"><u>Assignment Title</u></string>
+    <string name="SubjectName"><u>Subject Name</u></string>
+    <string name="TotalMark"><u>Total Mark</u></string>
+    <string name="DateGiven"><u>Date Given</u></string>
+    <string name="DateDue"><u>Date Due</u></string>
+
+    <!-- User input placeholders for Create Assignment Activity -->
+    <string name="TitleHint">e.g Create Mobile App</string>
+    <string name="SubjectHint">e.g Mobile Development</string>
+    <string name="MarksHint">e.g Worth 30%</string>
+    <string name="DateHint">DD/MM/YY</string>
+    <string name="submitButtonText">Submit</string>
+
+    <!-- Splash Screen strings -->
+    <string name="dit_splash_logo">DIT_SPLASH_LOGO</string>
+    <string name="creator_name">By David Gregan</string>
+
+    <!-- View List Strings -->
+    <string name="showdata">show data</string>
+    <string name="placeholder">placeholder</string>
+    <string name="emptyDisplayPlaceholder">You have no Assignments</string>
+    <string name="emptyTableImage">emptyTable</string>
+    <string name="emptyAssignmentPlaceholder">YOU HAVE NO ASSIGNMENTS</string>
+    <string name="SettingsButton">Settings Button</string>
+    <string name="rowTitleString">Assignment Title:</string>
+    <string name="rowSubjectString">Subject Name:</string>
+    <string name="rowMarksString">Total Marks:</string>
+    <string name="rowDateString">Due Date:</string>
+
+
+</resources>

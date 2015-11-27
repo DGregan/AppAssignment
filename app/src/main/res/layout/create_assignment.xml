@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <!-- Scroll View Layout attributes -->
+    <ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/CreateScrollView"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#307DC9"
+    >
+    <!-- Relative Layout attributes -->
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <!-- Assignment Title and user Input attributes -->
+        <TextView
+            android:id="@+id/AssignmentTitle"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/AssignmentTitle"
+            android:textColor="#FFFFFF"
+
+            android:shadowColor="#000000"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+             />
+
+        <EditText
+            android:id="@+id/editTitle"
+            android:hint="@string/TitleHint"
+            android:textStyle="italic"
+            android:textColor="#FFFFFF"
+            android:textAlignment="center"
+            android:inputType="text|textCapSentences|textAutoCorrect|textMultiLine"
+            android:minLines="2"
+
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/AssignmentTitle"
+            android:layout_centerHorizontal="true" />
+
+        <!-- Subject Name and user Input attributes -->
+        <TextView
+            android:id="@+id/SubjectName"
+            android:text="@string/SubjectName"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF"
+
+            android:shadowColor="#000000"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/editTitle"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/editSubjectName"
+            android:hint="@string/SubjectHint"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:inputType="text|textCapSentences|textAutoCorrect"
+
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/SubjectName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            />
+
+
+        <!-- Total Mark and user Input attributes -->
+        <TextView
+            android:id="@+id/TotalMark"
+            android:text="@string/TotalMark"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF"
+
+            android:shadowColor="#000000"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/editSubjectName"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/editTotalMark"
+            android:hint="@string/MarksHint"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:textColor="#FFFFFF"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/TotalMark"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"/>
+
+
+
+
+        <!-- Date Due and user Input attributes -->
+        <TextView
+            android:id="@+id/DateDue"
+            android:text="@string/DateDue"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF"
+
+            android:shadowColor="#000000"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/editTotalMark"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/editDateDue"
+            android:inputType="date"
+            android:hint="@string/DateHint"
+            android:textStyle="italic"
+            android:textColor="#FFFFFF"
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/DateDue"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            />
+
+        <!-- Submit button + attributes -->
+        <!-- Once submitted, go to DB and add to there -->
+        <Button
+            android:id="@+id/SubmitButton"
+            android:text="@string/submitButtonText"
+            android:onClick="onClick_InsertData"
+
+            android:textColor="#000000"
+            android:background="#FFFFFF"
+            android:shadowColor="#FFFFFF"
+            android:radius="4dp"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editDateDue"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+    </RelativeLayout>
+</ScrollView>
