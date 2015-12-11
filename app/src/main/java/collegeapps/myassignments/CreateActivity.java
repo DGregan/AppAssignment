@@ -1,5 +1,6 @@
 package collegeapps.myassignments;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -27,10 +28,15 @@ public class CreateActivity extends AppCompatActivity {
     EditText editATitle, editSubName, editTMark, editDateD;
 
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_assignment);
 
+        // Getting the ID passed by the User once they wish to update a specific Assignment
+        Log.i("State", "Receiving passedID;");
+        Intent passID = getIntent();
+        long id = passID.getLongExtra("_id", 0);
 
         // Initializing EditText Variables and Validation
         editATitle = (EditText) findViewById(R.id.editTitle);
@@ -42,7 +48,11 @@ public class CreateActivity extends AppCompatActivity {
         if (editDateD.getText().toString().length() == 0)
             editDateD.setError("Date due required!!");
 
+
         openDB();
+
+        // Updates the List by it's ID
+        updateListItem(id);
 
     }
 
@@ -68,12 +78,16 @@ public class CreateActivity extends AppCompatActivity {
                 );// end myDB.insertRow()
                 Log.i("State", "CALLED insertRow(DBAdapter) FUNCTION");
                 Log.i("State", "Successful Data insertion");
-                Toast.makeText(CreateActivity.this, "Assignment Created", Toast.LENGTH_LONG).show();
+
 
                 // Once a successful Data Insertion is made, got to ViewActivity
                 Intent intentViewButton = new Intent(this, ViewActivity.class);
                 Log.i("State", "Starting ViewActivity");
+
                 startActivity(intentViewButton); // execute activity 'ViewActivity'
+                // TODO ONCE SUBMIT BUTTON IS SELECTED THIS WILL BE PRESSED, REGARDLESS OF UPDATE OR CREAT
+                Toast.makeText(CreateActivity.this, "Assignment Updated", Toast.LENGTH_SHORT).show();
+
 
             }// end if
             else {
@@ -81,7 +95,36 @@ public class CreateActivity extends AppCompatActivity {
                 Toast.makeText(CreateActivity.this, "ERROR: Assignment not created", Toast.LENGTH_SHORT).show();
             }// end else
         Log.i("State", "CALLED onClick_InsertData FUNCTION");
+
     }// end onClick_insert
+
+    // Handling DB updating of ListItem
+    public void updateListItem(long id) {
+        Log.i("State", "CALLING updateListItem FUNCTION");
+
+        // Gets the row based on its ID
+        Cursor cursor = myDB.getARow(id); //Calls getARow function from DBAdapter
+
+        // Move to first record if possible
+        if (cursor.moveToFirst()){
+            // Update each editText field
+            String new_title = editATitle.getText().toString();
+            String new_subName = editSubName.getText().toString();
+            String new_mark = editTMark.getText().toString();
+            String new_date = editDateD.getText().toString();
+
+            myDB.deleteRow(id);
+            myDB.updateRow(id, new_title, new_subName, new_mark, new_date);
+
+        }// end if
+        else {
+            Log.e("ERROR", "CURSOR MOVE NOT POSSIBLE");
+        }
+        cursor.close(); // closing cursor
+        Log.i("State", "Successful Data Update");
+
+
+    }// end updateListItem
 
 
     @Override

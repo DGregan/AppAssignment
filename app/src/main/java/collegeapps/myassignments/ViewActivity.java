@@ -2,6 +2,7 @@ package collegeapps.myassignments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by dgreg_000 on 25/11/2015.
@@ -33,18 +35,11 @@ import android.widget.TextView;
 public class ViewActivity extends AppCompatActivity {
 
     DBAdapter myDB; // Declaring instance of the DB
-    // Declaring editText / Button variables for DB integration
-    EditText editATitle, editSubName, editTMark, editDateD;
-
-    private String TAG = DBAdapter.ID;
-
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("State", "Entering View Assignment Activity");
         setContentView(R.layout.view_assignment); // Use this XML for the Activity
-
 
         // Opens the DB
         openDB();
@@ -68,6 +63,7 @@ public class ViewActivity extends AppCompatActivity {
         Cursor cursor = myDB.getAllRows();
 
         String[] fromEditTexts = new String[] {
+                // SQLite DB Details
                 DBAdapter.TITLE,
                 DBAdapter.SUB_NAME,
                 DBAdapter.T_MARKS,
@@ -75,7 +71,7 @@ public class ViewActivity extends AppCompatActivity {
         };// end of fromEditTexts
 
         int[] toTextViewIDs = new int[] {
-                //R.id.textViewItemNumber,
+                // IDs of items(row_item_layout) where fromEditTexts values will be placed into
                 R.id.textViewItemTitle,
                 R.id.textViewItemSubject,
                 R.id.textViewItemMarks,
@@ -89,13 +85,7 @@ public class ViewActivity extends AppCompatActivity {
         listViewTasks.setAdapter(myCursorAdapter); // Setting Adapter to ListView
 
         // If there are No assignments in the DB, display the following
-/*
-        //Initializing empty List View text display
-        Log.i("State", "Creating TextView for Empty View Assignments Activity");
-        TextView emptyListViewText = (TextView)findViewById(R.id.emptyViewDisplay); // initializing Text View
-        Log.i("State", "Setting emptyListViewText to listViewTasks");
-        //listViewTasks.setEmptyView(emptyListViewText);
-*/
+
         //Initializing empty List View Image display
         Log.i("State", "Creating Image for Empty View Assignments Activity");
         ImageView emptyListImage = (ImageView) findViewById(R.id.emptyViewImage);
@@ -105,38 +95,15 @@ public class ViewActivity extends AppCompatActivity {
         Log.i("State", "CALLED addDataListView FUNCTION");
     } // end addDataListView
 
-// Handling DB updating of ListItem
-    // TODO NEED TO GO UPDATE DB BY GOING BACK TO CREATE AND UPDATING FROM THERE
-    // TODO ALSO HANDLE WHERE DB NEEDS TO CLOSE
-    public void updateListItem(long id) {
-        Log.i("State", "CALLING updateListItem FUNCTION");
-        Cursor cursor = myDB.getARow(id); //Calls getARow function from DBAdapter
-        // Move to first record if possible
-        if (cursor.moveToFirst()){
-            // Update each editText field
-            String new_title = editATitle.getText().toString();
-            String new_subName = editSubName.getText().toString();
-            String new_mark = editTMark.getText().toString();
-            String new_date = editDateD.getText().toString();
 
-            // Calling updateRow function
-            myDB.updateRow(id, new_title, new_subName, new_mark, new_date);
-
-
-        }// end if
-        else {
-            Log.e("ERROR", "CURSOR MOVE NOT POSSIBLE");
-        }
-        cursor.close(); // closing cursor
-    }// end updateListItem
-
+    // Delets specific list Item
     public void deleteListItem(long id){
         Log.i("State", "CALLING deleteListItem FUNCTION");
         myDB.deleteRow(id);
         Log.i("State", "CALLED deleteListItem FUNCTION");
     }// end deleteListItem
 
-    // Listen for click of List Item
+
     // Listen for click of List Item
     public void onClick_ListItemOnListener(){
         ListView listViewAssignments = (ListView) findViewById(R.id.listViewAssignments); //initializing List View
@@ -152,8 +119,12 @@ public class ViewActivity extends AppCompatActivity {
                 changeDialog.setPositiveButton("Update Item", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        updateListItem(id); // TODO FIX UPDATE LIST ITEM
-                        addDataListView();
+                        // Goes to CreateActivity with ID of Assignmnet to update
+                        Log.i("State", "Creating passID Intent");
+                        Intent passID = new Intent(ViewActivity.this, CreateActivity.class);
+                        passID.putExtra("_id", id);
+                        Log.i("State", "Attempting to passID to CreateActivity");
+                        startActivity(passID);
                     }// end OnClick Positive Button
                 });// end Update Button attributes
 
@@ -161,6 +132,7 @@ public class ViewActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deleteListItem(id);
+                        Toast.makeText(ViewActivity.this, "Assignment Deleted", Toast.LENGTH_SHORT).show();
                         addDataListView();
                     }// Onclick
                 });// end Delete Button Attributes
