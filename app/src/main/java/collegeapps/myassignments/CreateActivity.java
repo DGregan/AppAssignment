@@ -19,24 +19,23 @@ import android.widget.Toast;
  *  Create Activity | Handles the creation of DB Table and User input
  *
  *          openDB() - Opens the DB for usage to Create Activity
+ *          updateListItem() - Updates list item selected by the User
  *          onClick_InsertData - Inserts user inputted Data once a Button is clicked
  */
 public class CreateActivity extends AppCompatActivity {
 
-    DBAdapter myDB;
+    DBAdapter myDB; // instance of DBAdapter
     // Declaring editText / Button variables for DB integration
     EditText editATitle, editSubName, editTMark, editDateD;
 
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_assignment);
+        setContentView(R.layout.create_assignment); // use this XML for the Activity
 
         // Getting the ID passed by the User once they wish to update a specific Assignment
         Log.i("State", "Receiving passedID;");
-        Intent passID = getIntent();
-        long id = passID.getLongExtra("_id", 0);
+        Intent passID = getIntent(); // passID from ViewActivity
+        long id = passID.getLongExtra("_id", 0); // initializing passed in ID
 
         // Initializing EditText Variables and Validation
         editATitle = (EditText) findViewById(R.id.editTitle);
@@ -48,13 +47,12 @@ public class CreateActivity extends AppCompatActivity {
         if (editDateD.getText().toString().length() == 0)
             editDateD.setError("Date due required!!");
 
-
+        // Opens the DB
         openDB();
 
-        // Updates the List by it's ID
+        // Updates the List by it's ID (from VIewActivity)
         updateListItem(id);
-
-    }
+    }// end onCreate
 
     // Opens the Database
     private void openDB() {
@@ -84,10 +82,7 @@ public class CreateActivity extends AppCompatActivity {
                 Intent intentViewButton = new Intent(this, ViewActivity.class);
                 Log.i("State", "Starting ViewActivity");
 
-                startActivity(intentViewButton); // execute activity 'ViewActivity'
-                // TODO ONCE SUBMIT BUTTON IS SELECTED THIS WILL BE PRESSED, REGARDLESS OF UPDATE OR CREAT
-                Toast.makeText(CreateActivity.this, "Assignment Updated", Toast.LENGTH_SHORT).show();
-
+                startActivity(intentViewButton); // execute ViewActivity
 
             }// end if
             else {
@@ -112,7 +107,8 @@ public class CreateActivity extends AppCompatActivity {
             String new_subName = editSubName.getText().toString();
             String new_mark = editTMark.getText().toString();
             String new_date = editDateD.getText().toString();
-
+            
+            // Goes to DBAdapter and executes these methods
             myDB.deleteRow(id);
             myDB.updateRow(id, new_title, new_subName, new_mark, new_date);
 
@@ -122,8 +118,6 @@ public class CreateActivity extends AppCompatActivity {
         }
         cursor.close(); // closing cursor
         Log.i("State", "Successful Data Update");
-
-
     }// end updateListItem
 
 
@@ -141,6 +135,7 @@ public class CreateActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 /*
+        Removes SETTTINGS option from action bar
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
